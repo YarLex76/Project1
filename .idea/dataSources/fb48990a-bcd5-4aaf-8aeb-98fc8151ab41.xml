@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="project1_db">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.40">
+    <root id="1">
+      <ServerVersion>8.4.12</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="first_db"/>
+    <database id="3" parent="1" name="postgres"/>
+    <database id="4" parent="1" name="project1_db">
+      <Current>1</Current>
+    </database>
+    <database id="5" parent="1" name="template0"/>
+    <database id="6" parent="1" name="template1"/>
+    <schema id="7" parent="4" name="information_schema"/>
+    <schema id="8" parent="4" name="pg_catalog"/>
+    <schema id="9" parent="4" name="public">
+      <Current>1</Current>
+    </schema>
+    <sequence id="10" parent="9" name="person_id_seq"/>
+    <table id="11" parent="9" name="person"/>
+    <column id="12" parent="11" name="id">
+      <DataType>int4|4s</DataType>
+      <DefaultExpression>nextval(&apos;person_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="13" parent="11" name="name">
+      <DataType>varchar|12s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="14" parent="11" name="age">
+      <DataType>int4|4s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="15" parent="11" name="email">
+      <DataType>varchar|12s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="16" parent="11" name="address">
+      <DataType>varchar|12s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <index id="17" parent="11" name="person_pkey">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="18" parent="11" name="person_email_key">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="19" parent="11" name="person_pkey">
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
+    </key>
+    <key id="20" parent="11" name="person_email_key">
+      <UnderlyingIndexColNames>email</UnderlyingIndexColNames>
+    </key>
+  </database-model>
+</dataSource>
