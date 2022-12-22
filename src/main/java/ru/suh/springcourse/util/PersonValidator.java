@@ -33,6 +33,10 @@ public class PersonValidator implements Validator {
             // 1 - причина ошибки, 2 - код ошибки (пока пустое), 3 - сообщение об ошибке
         }
 
+        if (personDAO.getPersonName(person.getName()).isPresent()){
+            errors.rejectValue("name", "", "Такой человек уже существует");
+        }
+
 
 
     }

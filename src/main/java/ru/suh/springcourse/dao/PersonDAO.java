@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.suh.springcourse.models.Book;
 import ru.suh.springcourse.models.Person;
 
 import java.sql.*;
@@ -50,6 +51,18 @@ public class PersonDAO {
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
+    }
+
+    // Для валидации уникальности ФИО
+    public Optional<Person> getPersonName(String name) {
+        return jdbcTemplate.query("SELECT * FROM Person WHERE name=?", new Object[]{name},
+                new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+    }
+
+    // Здесь Join не нужен. И так уже получили человека с помощью отдельного метода
+    public List<Book> getBooksByPersonId(int id) {  // метод показывает список книг, которые взял человек
+        return jdbcTemplate.query("SELECT * FROM Book WHERE person_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class));
     }
 }
 

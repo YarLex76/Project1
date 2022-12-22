@@ -16,45 +16,86 @@
     <schema id="9" parent="4" name="public">
       <Current>1</Current>
     </schema>
-    <sequence id="10" parent="9" name="person_id_seq"/>
-    <table id="11" parent="9" name="person"/>
-    <column id="12" parent="11" name="id">
+    <sequence id="10" parent="9" name="book_id_seq"/>
+    <sequence id="11" parent="9" name="person_id_seq"/>
+    <table id="12" parent="9" name="book"/>
+    <table id="13" parent="9" name="person"/>
+    <column id="14" parent="12" name="id">
+      <DataType>int4|4s</DataType>
+      <DefaultExpression>nextval(&apos;book_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="15" parent="12" name="title">
+      <DataType>varchar(100)|12s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="16" parent="12" name="author">
+      <DataType>varchar(100)|12s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="17" parent="12" name="year">
+      <DataType>int4|4s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="18" parent="12" name="person_id">
+      <DataType>int4|4s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="19" parent="12" name="book_person_id_fkey">
+      <ColNames>person_id</ColNames>
+      <OnDelete>set-null</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefTableName>person</RefTableName>
+    </foreign-key>
+    <index id="20" parent="12" name="book_pkey">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="21" parent="12" name="book_pkey">
+      <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
+    </key>
+    <column id="22" parent="13" name="id">
       <DataType>int4|4s</DataType>
       <DefaultExpression>nextval(&apos;person_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="13" parent="11" name="name">
+    <column id="23" parent="13" name="name">
       <DataType>varchar|12s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="14" parent="11" name="age">
+    <column id="24" parent="13" name="age">
       <DataType>int4|4s</DataType>
       <Position>3</Position>
     </column>
-    <column id="15" parent="11" name="email">
+    <column id="25" parent="13" name="email">
       <DataType>varchar|12s</DataType>
       <Position>4</Position>
     </column>
-    <column id="16" parent="11" name="address">
+    <column id="26" parent="13" name="address">
       <DataType>varchar|12s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <index id="17" parent="11" name="person_pkey">
+    <index id="27" parent="13" name="person_pkey">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="18" parent="11" name="person_email_key">
+    <index id="28" parent="13" name="person_email_key">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="19" parent="11" name="person_pkey">
+    <key id="29" parent="13" name="person_pkey">
       <Primary>1</Primary>
       <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
-    <key id="20" parent="11" name="person_email_key">
+    <key id="30" parent="13" name="person_email_key">
       <UnderlyingIndexColNames>email</UnderlyingIndexColNames>
     </key>
   </database-model>
